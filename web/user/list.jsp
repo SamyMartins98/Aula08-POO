@@ -17,6 +17,7 @@
         <h1>User Web App</h1>
         <h2>Usuários</h2>
         <h3>Lista</h3>
+        <h3><a href="../index.jsp">Início</a></h3>
         <h4><a href="new.jsp">Adicionar Usuário</a></h4>
         <table border="1">
             <tr>
@@ -25,13 +26,13 @@
             </tr>
             <%for(User user: Db.getUsers()){%>
             <tr>
-                <td><%=user.getName()%></td>
+                <td><%=user.getNome()%></td>
                 <td><%=user.getEmail()%></td>
                 <td>
                     <% int i = Db.getUsers().indexOf(user);%>
-                    <a href="edit.jsp?i=<%=i%>">Alterar</a>
+                    <a href="editar.jsp?i=<%=i%>">Alterar</a>
                 </td>
-                <td><a href="delete.jsp?i=<%=i%>">Excluir</a></td>
+                <td><a href="deletar.jsp?i=<%=i%>">Excluir</a></td>
             </tr>
             <%}%>
         </table>

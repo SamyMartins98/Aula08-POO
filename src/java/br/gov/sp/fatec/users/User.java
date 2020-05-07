@@ -12,7 +12,7 @@ package br.gov.sp.fatec.users;
 public class User {
     
     String email;
-    String name;
+    String nome;
     String password;
 
     public String getEmail() {
@@ -23,12 +23,12 @@ public class User {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     

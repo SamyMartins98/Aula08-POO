@@ -12,33 +12,35 @@
     String error = null;
     User user = null;
     int i = -1;
-    if(request.getParameter("i") != null){
+    if(request.getParameter("i")!= null){
         i = Integer.parseInt(request.getParameter("i"));
         user = Db.getUsers().get(i);
         if(user == null){
             error = "Índice inválido!";
-        }
-    }else if(request.getParameter("edit")!=null){
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String senha1 = request.getParameter("senha1");
-        String senha2 = request.getParameter("senha2");
-        if(name.isEmpty()){
-            error = "Nome inválido";
-        }else if(email.isEmpty()){
-            error = "Email inválido";
-        }else if(senha1.isEmpty()){
-            error = "Senha inválida";
         }else{
-            if(senha1.equals(senha2)){
-                User editedUser = new User();
-                editedUser.setName(name);
-                editedUser.setEmail(email);
-                editedUser.setPassword(senha1);
-                Db.getUsers().set(i,editedUser);
-                response.sendRedirect("list.jsp");
-            }else{
-                error = "Senhas diferentes";
+            if(request.getParameter("edit")!=null){
+                String name = request.getParameter("name");
+                String email = request.getParameter("email");
+                String senha1 = request.getParameter("senha1");
+                String senha2 = request.getParameter("senha2");
+                if(name.isEmpty()){
+                    error = "Nome inválido";
+                }else if(email.isEmpty()){
+                    error = "Email inválido";
+                }else if(senha1.isEmpty()){
+                    error = "Senha inválida";
+                }else{
+                    if(senha1.equals(senha2)){
+                        User editedUser = new User();
+                        editedUser.setNome(name);
+                        editedUser.setEmail(email);
+                        editedUser.setPassword(senha1);
+                        Db.getUsers().set(i,editedUser);
+                        response.sendRedirect("list.jsp");
+                    }else{
+                        error = "Senhas diferentes";
+                    }
+                }
             }
         }
     }else{
@@ -52,6 +54,7 @@
     </head>
     <body>
         <h1>User Web App</h1>
+        <h3><a href="../index.jsp">Início</a></h3>
         <h2><a href="list.jsp">Usuários</a></h2>
         <h3>Editar</h3>
         <%if(error!=null){%>
@@ -61,15 +64,15 @@
         <form method="post">
             <input type="hidden" name="i" value="<%=i%>"/>
             Nome do usuário:<br/>
-            <input type="text" name="name" value="<%=user.getName() %>"/><br/>
+            <input type="text" name="name" value="<%=user.getNome()%>"/><br/>
             Email: <br/>
             <input type="text" name="email" value="<%=user.getEmail()%>"/><br/>
             <fieldset>
                 <legend>Senha</legend>
                 Senha:<br/>
-                <input type="password" name="senha1" value="<%= user.getPassword()%>"/><br/>
+                <input type="password" name="senha1" value="<%=user.getPassword()%>"/><br/>
                 Confirmação da Senha:<br/>
-                <input type="password" name="senha2" value="<%= user.getPassword()%>"/><br/>
+                <input type="password" name="senha2" value="<%=user.getPassword()%>"/><br/>
             </fieldset>
             <input type="submit" name="edit" value="Alterar"><br/>
         </form>

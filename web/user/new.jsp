@@ -25,7 +25,7 @@
         }else{
             if(senha1.equals(senha2)){
                 User user = new User();
-                user.setName(name);
+                user.setNome(name);
                 user.setEmail(email);
                 user.setPassword(senha1);
                 Db.getUsers().add(user);
@@ -43,6 +43,7 @@
     </head>
     <body>
         <h1>User Web App</h1>
+        <h3><a href="../index.jsp">Início</a></h3>
         <h3><a href="list.jsp">Usuário</a></h3>
         <h3>Novo</h3>
         <%if(error!=null){%>

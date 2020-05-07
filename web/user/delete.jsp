@@ -17,11 +17,12 @@
         user = Db.getUsers().get(i);
         if(user == null){
             error = "Índice inválido!";
-        }
-    }else if(request.getParameter("delete")!=null){      
+        }else{
+            if(request.getParameter("delete")!=null){      
                 Db.getUsers().remove(i);
                 response.sendRedirect("list.jsp");
-
+            }
+        }
     }else{
         error = "Índice inválido!";
     }
@@ -33,6 +34,7 @@
     </head>
     <body>
         <h1>User Web App</h1>
+        <h3><a href="../index.jsp">Início</a></h3>
         <h3><a href="list.jsp">Usuário</a></h3>
         <h3>Excluir</h3>
         <%if(error!=null){%>
@@ -42,7 +44,7 @@
         <form method="post">
             <input type="hidden" name="i" value="<%=i%>"/>
             Nome do usuário:<br/>
-            <b><%=user.getName()%></b><br/>
+            <b><%=user.getNome()%></b><br/>
             Email: <br/>
             <b><%=user.getEmail()%>"</b><br/>
             <input type="submit" name="delete" value="Excluir"><br/>

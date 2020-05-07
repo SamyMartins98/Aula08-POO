@@ -19,13 +19,13 @@ public class Db {
         if(users==null){
             users = new ArrayList<>();
             User admin = new User();
-            admin.setName("Administrador do sistema");
+            admin.setNome("Administrador do sistema");
             admin.setPassword("123456");
             admin.setEmail("admin@empresa.com.br");
             users.add(admin);
             
             User user = new User();
-            user.setName("Gerente do sistema");
+            user.setNome("Gerente do sistema");
             user.setPassword("78901");
             user.setEmail("gerente@empresa.com.br");
             users.add(user);
